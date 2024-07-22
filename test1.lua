@@ -4,7 +4,6 @@
 cls, btn, spr, time, cocreate, coresume, map, mget, flr =
 cls, btn, spr, time, cocreate, coresume, map, mget, flr
 
-h_increase = 1
 
 function _init()
 	make_player()
@@ -26,7 +25,7 @@ function make_player()
 	player = {
 		position = {
 			x = 64,
-			y = 64,
+			y = 112,
 		},
 		velocity = {
 			x = 0,
@@ -41,11 +40,12 @@ end
 
 function draw_player()
 	spr(player.sprite, player.position.x,player.position.y)
-	print(collision, 0, 0, 10)
-	print(tile_x)
-	print(tile_y)
-	print(player.position.x, 20, 5)
-	print(player.position.y, 20, 10)
+	print(collision.top.yes)
+	print(collision.bottom.yes)
+	print(collision.left.yes)
+	print(collision.right.yes)
+	print(player.position.x, 40, 5)
+	print(player.position.y, 40, 10)
 end
 
 
