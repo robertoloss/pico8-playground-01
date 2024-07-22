@@ -1,19 +1,24 @@
 -- test game
 -- by me
-cls, btn, spr = cls, btn, spr
+
+cls, btn, spr, time, cocreate, coresume, map, mget, flr =
+cls, btn, spr, time, cocreate, coresume, map, mget, flr
+
+h_increase = 1
 
 function _init()
 	make_player()
 	make_keymap()
 end
 
-function _update()
+function _update60()
 	key_checker()
 	move_player()
 end
 
 function _draw()
 	cls() --clear screen
+	map()
 	draw_player()
 end
 
@@ -31,21 +36,16 @@ function make_player()
 	}
 end
 
-function move_player()
-	if key_down(0) then player.velocity.x = -1 end -- left
-	if key_down(1) then player.velocity.x = 1 end -- right
-	if key_up(0) and not btn(1) then player.velocity.x = 0 end
-	if key_up(1) and not btn(0) then player.velocity.x = 0 end
-
-	player.position.x = player.position.x + player.velocity.x
-	player.position.y = player.position.y + player.velocity.y
-end
+--local last_time = 0
+--local delta_time = 0
 
 function draw_player()
-	print(key_down(0))
-	print_table(keys_previous, 10, 10)
-	print_table(keys, 60, 10)
 	spr(player.sprite, player.position.x,player.position.y)
+	print(collision, 0, 0, 10)
+	print(tile_x)
+	print(tile_y)
+	print(player.position.x, 20, 5)
+	print(player.position.y, 20, 10)
 end
 
 
@@ -75,12 +75,6 @@ function key_checker()
 	end
 end
 
-function print_table(tbl, x, y)
-    local line = 0
-    for key, value in pairs(tbl) do
-        print(key .. ": " .. tostring(value), x, y + line * 8)
-        line = line + 1
-    end
-end
+
 
 
